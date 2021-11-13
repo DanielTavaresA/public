@@ -9,4 +9,11 @@ final class Vector3Test {
         assertThat(1, is(1));
     }
 
+    @Test
+    public void checkSizeIsZero(){
+        Vector3 vector = new Vector3(0, 0, 0);
+        assertThat(vector.isNull(), is(true));
+
+    }
+
 }
