@@ -4,26 +4,28 @@ import ch.epfl.sweng.locator.Precision;
 
 public class TreasureFinder {
 
-    private final Geolocator geolocator;
+    private final LocationInterface locationInterface;
 
     // There MUST be a parameterless constructor,
     // it is used by our Super-Fancy-Framework-That-Does-Not-Support-Parameters™
     public TreasureFinder() {
-        geolocator = new Geolocator(Precision.FINE);
+        locationInterface = new GeolocatorLocator();
+    }
+
+    public TreasureFinder( LocationInterface locationInterface){
+        this.locationInterface = locationInterface;
     }
 
     public String getHint(Position treasurePos) {
-        if (!geolocator.isLocationServiceRunning()) {
-            try {
-                geolocator.startLocationService();
-            } catch(Exception e) {
-                return "The treasure is on Saturn!";
-            }
+        Position position;
+        try{
+           position = locationInterface.getUserPosition();
+        }catch (Exception e) {
+            return "The treasure blabla";
         }
+        double userLatitude = position.latitude;
+        double userLongitude = position.longitude;
 
-        PositionRange userPositionRange = geolocator.getUserPosition();
-        double userLatitude = (userPositionRange.maxLatitude + userPositionRange.minLatitude) / 2.0;
-        double userLongitude = (userPositionRange.maxLongitude + userPositionRange.minLongitude) / 2.0;
 
         if (userLatitude > 70) {
             return "Nope, the treasure is not at the North Pole.";
