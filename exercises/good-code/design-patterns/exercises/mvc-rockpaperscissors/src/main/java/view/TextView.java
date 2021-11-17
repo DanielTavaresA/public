@@ -9,8 +9,8 @@ import java.util.Scanner;
 /** Corresponds to a text-based user interface of the game. */
 public class TextView implements View {
 
-  private final Model model;
-  private final Controller controller;
+  private final Model model = null;
+  private final Controller controller = null;
 
   /**
    * Creates a text-based user interface based on the given model and controller.
@@ -19,9 +19,7 @@ public class TextView implements View {
    * @param controller controller that is used by the view.
    */
   public TextView(Model model, Controller controller) {
-    this.model = model;
-    this.controller = controller;
-    controller.setView(this);
+    // TODO
   }
 
   @Override
@@ -116,7 +114,7 @@ public class TextView implements View {
   @Override
   public void showNewGameButton() {
     // create a new game
-    createView();
+    // TODO
   }
 
   @Override

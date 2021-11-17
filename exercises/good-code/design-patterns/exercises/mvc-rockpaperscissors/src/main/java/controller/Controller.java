@@ -12,7 +12,7 @@ import view.View;
 public class Controller {
 
   private View view = null;
-  private final Model model;
+  private final Model model = null;
 
   /**
    * Creates the controller.
@@ -20,7 +20,7 @@ public class Controller {
    * @param model given model which the controller is going to interact with.
    */
   public Controller(Model model) {
-      this.model = model;
+    // TODO
   }
 
   /**
@@ -29,8 +29,7 @@ public class Controller {
    * @param view given view which the controller is going to interact with.
    */
   public void setView(View view) {
-    this.view = view;
-    view.createView();
+    // TODO
   }
 
   /**
