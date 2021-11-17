@@ -10,19 +10,25 @@ public class App {
         compute();
     }
 
-    public static List<Double> compute() throws FileNotFoundException {
-        File file = new File("data");
-        List<Double> normalized = new ArrayList<>();
-        Scanner scanner = new Scanner(file);
+    public static List<Double> scanNumbers(Scanner scanner){
         List<Double> numbers = new ArrayList<>();
         while (scanner.hasNextDouble()) {
             double number = scanner.nextDouble();
             numbers.add(number);
         }
+        return numbers;
+    }
+
+    public static double sum(List<Double> numbers){
         double sum = 0;
         for (double f : numbers) {
             sum += f;
         }
+        return sum;
+    }
+
+    public static List<Double> normalize(List<Double> numbers, double sum){
+        List<Double> normalized = new ArrayList<>();
         double mean = sum / numbers.size();
         double sumSquare = 0;
         for (double f : numbers) {
@@ -33,8 +39,10 @@ public class App {
         for (double f : numbers) {
             normalized.add((f - mean) / std);
         }
-        System.out.println(normalized);
+        return normalized;
+    }
 
+    public static void fileWrite(List<Double> normalized){
         try {
             FileWriter fw = new FileWriter("output");
             for (double n : normalized) {
@@ -45,6 +53,17 @@ public class App {
         } catch (Exception e) {
             System.out.println("Error writing output file");
         }
+
+    }
+
+    public static List<Double> compute() throws FileNotFoundException {
+        File file = new File("data");
+        Scanner scanner = new Scanner(file);
+        List<Double> numbers = new ArrayList<>(scanNumbers(scanner));
+        double sum = sum(numbers);
+        List<Double> normalized = new ArrayList<>(normalize(numbers, sum));
+        System.out.println(normalized);
+        fileWrite(normalized);
         System.out.println("Wrote output file.");
         scanner.close();
         return normalized;
