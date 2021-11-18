@@ -1,3 +1,4 @@
+import java.util.Optional;
 import java.util.Scanner;
 
 import goolge.Goolge;
@@ -10,12 +11,12 @@ public class App {
         String line = scanner.nextLine().trim();
         if (!line.isEmpty()) {
             String[] keywords = line.split(" ");
-            Result result = Goolge.search(keywords);
-            while (result != null) {
-                System.out.println(result);
+            Optional<Result> result = Goolge.search(keywords);
+            while (result.isPresent()) {
+                System.out.println(result.get());
                 System.out.println("...");
                 scanner.nextLine();
-                result = result.next();
+                result = result.get().next();
             }
             System.out.println();
         }

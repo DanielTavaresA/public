@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Optional;
+
 public class Lecturer {
   private String name;
 
@@ -7,7 +9,7 @@ public class Lecturer {
     this.name = name;
   }
 
-  public String getName() {
-    return name;
+  public Optional<String> getName() {
+    return Optional.ofNullable(name);
   }
 }

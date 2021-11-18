@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class Result {
 
@@ -17,11 +18,11 @@ public class Result {
     }
   }
 
-  public Result next() {
+  public Optional<Result> next() {
     if (iterator.hasNext()) {
-      return new Result(iterator);
+      return Optional.of(new Result(iterator));
     }
-    return null;
+    return Optional.empty();
   }
 
   @Override

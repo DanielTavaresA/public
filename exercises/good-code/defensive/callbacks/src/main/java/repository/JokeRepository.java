@@ -1,5 +1,6 @@
 package repository;
 
+import callback.Callback;
 import exception.NoJokeException;
 import model.Joke;
 import service.JokeService;
@@ -7,7 +8,11 @@ import service.JokeService;
 public class JokeRepository {
   private JokeService service = new JokeService();
 
-  public Joke random() throws NoJokeException {
-    return service.random();
+  public void random(Callback<Joke> callback) throws NoJokeException {
+    try {
+      callback.onSuccess(service.random());
+    }catch (Exception e){
+      callback.onError(e);
+    }
   }
 }

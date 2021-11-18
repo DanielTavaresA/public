@@ -2,6 +2,7 @@ package store;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import model.Course;
 import model.Lecturer;
@@ -15,8 +16,8 @@ public class Courses {
     courses.put(course.getCode(), course);
   }
 
-  public static Course findByCode(String code) {
+  public static Optional<Course> findByCode(String code) {
     assert code != null : "null code";
-    return courses.getOrDefault(code, null);
+    return Optional.ofNullable(courses.getOrDefault(code, null));
   }
 }
