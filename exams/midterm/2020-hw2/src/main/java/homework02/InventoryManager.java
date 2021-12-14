@@ -17,32 +17,38 @@ import homework02.util.Manager;
  * Implementation of the {@link Manager} interface. See the interface documentation.
  */
 public class InventoryManager implements Manager {
+
+    private final InventoryDatabase database;
+    private InventoryObserver inventoryObserver = null;
     /**
      * Creates a new manager for the given database.
      *
      * @param database The database, which cannot be null
      */
     public InventoryManager(InventoryDatabase database) {
-        throw new UnsupportedOperationException("TODO");
+        this.database = database;
     }
 
     @Override
     public void add(ItemKind itemKind) {
-        throw new UnsupportedOperationException("TODO");
+        int quantity = database.get(itemKind);
+        database.update(itemKind, quantity + 1);
     }
 
     @Override
     public boolean take(ItemKind itemKind) {
-        throw new UnsupportedOperationException("TODO");
+       int quantity = database.get(itemKind);
+       database.update(itemKind, quantity - 1);
+       return true;
     }
 
     @Override
     public int getQuantity(ItemKind itemKind) {
-        throw new UnsupportedOperationException("TODO");
+        return database.get(itemKind);
     }
 
     @Override
     public void addObserver(InventoryObserver observer) {
-        throw new UnsupportedOperationException("TODO");
+        inventoryObserver = observer;
     }
 }

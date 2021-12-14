@@ -10,6 +10,8 @@ package homework03;
 
 import homework03.util.Database;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -25,9 +27,18 @@ import java.util.function.Consumer;
  */
 public class DatabaseImpl implements Database {
 
+    private HashMap<String, HashSet<String>> map = new HashMap<>();
+
     @Override
     public void put(String sciper, String day, Consumer<String> onSuccess, Consumer<Exception> onError) {
-        throw new UnsupportedOperationException("TODO: Replace this line with your code.");
+        try{
+            map.computeIfAbsent(sciper, s -> new HashSet<>()).add(day);
+        }catch (Exception e){
+            onError.accept(e);
+            return;
+        }
+        onSuccess.accept(day);
+
     }
 
     @Override
