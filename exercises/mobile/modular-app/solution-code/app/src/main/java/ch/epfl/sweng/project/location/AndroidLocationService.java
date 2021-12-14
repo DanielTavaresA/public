@@ -2,7 +2,12 @@ package ch.epfl.sweng.project.location;
 
 import android.content.Context;
 import android.location.Criteria;
+import android.location.LocationListener;
 import android.location.LocationManager;
+
+import androidx.annotation.NonNull;
+
+import java.util.function.Consumer;
 
 public final class AndroidLocationService implements LocationService {
     private final LocationManager locationManager;
@@ -69,6 +74,20 @@ public final class AndroidLocationService implements LocationService {
             // We need to explicitly catch this exception, even though we throw it again immediately
             throw ex;
         }
+
+    }
+
+    @Override
+    public void subscribeToocationUpdates(Consumer<Location> consumer) {
+        int id = ++listenerID;
+        LocationListener listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull android.location.Location location) {
+                Location loc = new Location(location.getLatitude(), location.getLongitude());
+                consumer.accept(loc);
+            }
+        };
+        listener.put(id, )
 
     }
 }
