@@ -6,7 +6,7 @@ package intellij;
 public class App {
 
     public static void main(String[] args) {
-        BadClassName myClass = new BadClassName("oh hey");
+        newName myClass = new newName("oh hey");
         System.out.println(myClass.longAndComplicatedMethod());
         myClass.multiplesOf2();
     }

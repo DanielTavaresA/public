@@ -4,41 +4,52 @@ import java.util.Scanner;
 
 public class Greeter {
 
+    private static final String FIRST_NAME_REQUEST = "Please enter your first name:";
+    private static final String LAST_NAME_REQUEST = "Please enter your last name:";
+    private static final String AGE_REQUEST = "Please enter your age:";
+    private static final String ageFormat = "(%s years old)";
+
+    
+
+    public static String getRequest(String request){
+        Scanner s = new Scanner(System.in);
+        System.out.println(request);
+        String input = s.next();
+        return input;
+    }
+    public static void printGreatings(String... str){
+        StringBuilder greating = new StringBuilder("Nice to meet you ");
+        for (String s :
+                str) {
+            greating.append(s).append(" ");
+        }
+        System.out.println(greating.toString().strip());
+    }
+
     // prints: Nice to meet you Willy
     public static void askForFirstName() {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Please enter your first name:");
-        String firstName = s.next();
-        System.out.println("Nice to meet you " + firstName);
+        String firstName = getRequest(FIRST_NAME_REQUEST);
+        printGreatings(firstName);
     }
 
     // prints: Nice to meet you Wonka
     public static void askForLastName() {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Please enter your last name:");
-        String lastName = s.next();
-        System.out.println("Nice to meet you " + lastName);
+        String lastName = getRequest(LAST_NAME_REQUEST);
+        printGreatings(lastName);
     }
 
     // prints: Nice to meet you Willy Wonka
     public static void askForFullName() {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Please enter your first name:");
-        String firstName = s.next();
-        System.out.println("Please enter your last name:");
-        String lastName = s.next();
-        System.out.println("Nice to meet you " + firstName + " " + lastName);
+        String firstName = getRequest(FIRST_NAME_REQUEST);
+        String lastName = getRequest(LAST_NAME_REQUEST);
+        printGreatings(firstName, lastName);
     }
 
     // prints: Nice to meet you Willy Wonka (23 years old)
     public static void askForFullNameAndAge() {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Please enter your first name:");
-        String firstName = s.next();
-        System.out.println("Please enter your last name:");
-        String lastName = s.next();
-        System.out.println("Please enter your age:");
-        String age = s.next();
-        System.out.println("Nice to meet you " + firstName + " " + lastName + " (" + age + " years old)");
+        String firstName = getRequest(FIRST_NAME_REQUEST);
+        String lastName = getRequest(LAST_NAME_REQUEST);
+        String age = getRequest(AGE_REQUEST);
+        printGreatings(firstName, lastName,  String.format(ageFormat, age));
     }
 }
