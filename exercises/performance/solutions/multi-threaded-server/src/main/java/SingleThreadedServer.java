@@ -6,6 +6,7 @@ public class SingleThreadedServer {
         get("/loop", (req, res) -> {
             int i = 0;
             while (i++ < Integer.MAX_VALUE) {
+                System.out.println(i);
             }
             System.out.println("Done");
             return true;

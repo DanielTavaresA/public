@@ -19,13 +19,16 @@ import java.util.List;
  * Implementation of the {@link Logger} interface. See the interface documentation.
  */
 public class InventoryLogger implements Logger {
+    private Manager manager;
+    private List<String> movements;
     /**
      * Creates a new logger for the given manager.
      *
      * @param manager The manager, which cannot be null
      */
     public InventoryLogger(Manager manager) {
-        throw new UnsupportedOperationException("TODO");
+        this.manager = manager;
+        manager.addObserver(this);
     }
 
     @Override

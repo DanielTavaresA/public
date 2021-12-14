@@ -9,7 +9,7 @@ public class App {
             System.out.println(wrongUsageMessage);
             return;
         }
-        var arg = args[0];
+        var arg = singleThreadedArg;
         String empty[] = {};
         switch (arg) {
         case singleThreadedArg:
